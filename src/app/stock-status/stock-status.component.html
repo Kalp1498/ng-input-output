@@ -1,0 +1,11 @@
+<input type="number" [(ngModel)]="productDetails.stock" />
+<hr>
+<label *ngIf="productDetails.stock <= 10" style="background-color: red;">
+    Low
+</label>
+<label *ngIf="productDetails.stock > 10 && productDetails.stock <= 20" style="background-color: yellow;">
+    Average
+</label>
+<label *ngIf="productDetails.stock > 20" style="background-color: green;">
+    High
+</label>
