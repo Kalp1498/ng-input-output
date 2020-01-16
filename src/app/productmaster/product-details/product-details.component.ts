@@ -7,35 +7,35 @@ import { Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChange
 })
 export class ProductDetailsComponent implements OnInit, OnChanges {
 
-  products: IProductDetails[] = [];
+  productLists: IProductDetails[] = [];
   filteredProdcuts: IProductDetails[] = [];
   price: number;
 
-  @Output() productToParent = new EventEmitter<IProductDetails[]>();
+  @Output() productToMaster = new EventEmitter<IProductDetails[]>();
   @Input() title: string;
   @Output() errorMsgToParent = new EventEmitter<String>();
 
   constructor() { }
 
   ngOnChanges() {
-    this.filteredProdcuts = this.products.filter(item => {
-      if (item.title.toLowerCase().includes(this.title))
+    this.filteredProdcuts = this.productLists.filter(item => {
+      if (item.title.toLowerCase().includes(this.title.toLowerCase()))
       return item;
     });
     if (this.title == undefined || this.title == "") {
-      this.sendProductToApp(this.products);
+      this.sendProductToMaster(this.productLists);
       this.errorMsgToParent.emit("");
     } else if (this.filteredProdcuts.length == 0 && this.title != "") {
       this.errorMsgToParent.emit("Oops! no data found.")
-      this.sendProductToApp(this.filteredProdcuts);
+      this.sendProductToMaster(this.filteredProdcuts);
     } else {
-      this.sendProductToApp(this.filteredProdcuts);
+      this.sendProductToMaster(this.filteredProdcuts);
       this.errorMsgToParent.emit("");
     }
   }
 
   ngOnInit() {
-    this.products = [
+    this.productLists = [
       {id: 1, title: "Mi A1", price:10000, stock:15},
       {id: 2, title: "Mi A2", price:20000, stock:22},
       {id: 3, title: "Mi A3", price:30000, stock:8},
@@ -45,11 +45,11 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     ]
 
     // this.products = this.products.map(item => Object.assign({}, item, { totalPrice : item.price * item.stock}))
-    this.sendProductToApp(this.products);
+    this.sendProductToMaster(this.productLists);
   }
 
-  sendProductToApp(products: IProductDetails[]) {
-    this.productToParent.emit(products);
+  sendProductToMaster(products: IProductDetails[]) {
+    this.productToMaster.emit(products);
   }
 
 }

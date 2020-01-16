@@ -1,0 +1,10 @@
+<button (click)="showForm($event)">Add Product</button>
+<br>
+<br>
+<form *ngIf="showHide" style="text-align: center;">
+    <input type="text" [(ngModel)]="title" placeholder="enter title" [ngModelOptions]="{standalone: true}">
+    <input type="number" [(ngModel)]="price" placeholder="enter price" [ngModelOptions]="{standalone: true}">
+    <input type="number" [(ngModel)]="stock" placeholder="enter stock" [ngModelOptions]="{standalone: true}">
+    <button (click)="addProduct($event)">Done</button>
+    <button style="background-color: red;" (click)="hideForm($event)">Cancel</button>
+</form>

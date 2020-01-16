@@ -3,17 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductDetailsComponent } from './productmaster/product-details/product-details.component';
 import { FormsModule } from '@angular/forms';
-import { StockStatusComponent } from './stock-status/stock-status.component';
-import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { StockstatusComponent } from './productmaster/stockstatus/stockstatus.component';
+import { DeleteProductComponent } from './productmaster/delete-product/delete-product.component';
+import { ProductmasterComponent } from './productmaster/productmaster.component';
+import { AddproductComponent } from './productmaster/addproduct/addproduct.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductDetailsComponent,
-    StockStatusComponent,
-    DeleteProductComponent
+    StockstatusComponent,
+    DeleteProductComponent,
+    ProductmasterComponent,
+    StockstatusComponent,
+    AddproductComponent
   ],
   imports: [
     BrowserModule,

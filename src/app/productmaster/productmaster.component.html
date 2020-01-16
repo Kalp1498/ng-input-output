@@ -1,0 +1,59 @@
+<app-product-details (productToMaster)="getProductFromProd($event)" (errorMsgToParent)="getErrorMsgFromMaster($event)" [title]="searchTitle"></app-product-details>
+
+<br>
+<form>
+    <input type="text" name="search" placeholder="Enter title here.." [(ngModel)]="searchTitle">
+    <span>
+      <app-addproduct [productLists]="productLists"></app-addproduct> 
+    </span>
+</form>
+
+<br>
+
+<table border="1" cellpadding="10" style="width: 100%;">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Stock Update</th>
+    <th>TotalPrice</th>
+    <th>Remove</th>
+  </tr>
+  <tr *ngFor="let productList of productLists" style="text-align: center;">
+    <td>{{ productList.id }}</td>
+    <td>{{ productList.title }}</td>
+    <td>{{ productList.price }}  </td>
+    <td>{{ productList.stock }}</td>
+    <td><app-stockstatus [productDetails]="productList"></app-stockstatus></td>
+    <td>{{ productList.stock * productList.price }}</td>
+    <td><app-delete-product (productIDtoDelete)="deleteProductFromID($event)" [btnID]="productList.id"></app-delete-product></td>
+  </tr>
+  <tr style="text-align: center;">
+    <th></th>
+    <th></th>
+    <th>
+      <label>Total</label><br>
+      {{ getTotalPrice() }}
+    </th>
+    <th>
+      <label>Total</label><br>
+      {{ getTotalStock() }}
+    </th>
+    <th></th>
+    <th>
+      <label>Total</label><br>
+      {{ getTotalOfTotalPrices() }}
+    </th>
+  </tr>
+</table>
+
+<br>
+
+<span *ngFor="let order of orderByArray; let i = index">
+  <button (click)="reorder($event, order)">{{ buttonTitle[i] }}</button>
+</span>
+
+<h1 style="text-align: center;">
+  {{errorMsg}}
+</h1>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-delete-product',
   templateUrl: './delete-product.component.html',
