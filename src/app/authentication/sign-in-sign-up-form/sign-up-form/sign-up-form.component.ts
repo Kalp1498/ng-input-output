@@ -1,20 +1,18 @@
 import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { IUserDetails } from '../UserDetailsInterface';
-import { UserLoginDetailService } from '../user-details.service';
+import { IUsers } from '../../../models/users-interface';
+import { UserLoginDetailService } from '../../../services/user-details.service';
 
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
   styleUrls: ['./sign-up-form.component.css']
-  // encapsulation: ViewEncapsulation.None
 })
 export class SignUpFormComponent implements OnInit {
 
   constructor(private userLoginDetails: UserLoginDetailService) { }
 
-  userDetailsArray: IUserDetails[];
-  userDetail: IUserDetails;
+  userDetailsArray: IUsers[];
+  userDetail: IUsers;
 
   @Output() showView = new EventEmitter<string>();
 

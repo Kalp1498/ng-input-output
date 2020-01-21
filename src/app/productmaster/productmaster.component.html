@@ -1,17 +1,16 @@
-<!-- <ng-container *ngIf="!loginSuccess">
-  <app-sign-in-sign-up-form (loginSuccess)="getLoginStatus($event)"></app-sign-in-sign-up-form>
-</ng-container> -->
 <ng-container *ngIf="!loginSuccess">
-  <app-product-details (productListsToMaster)="getProductLists($event)" (errorMsgToParent)="getErrorMsgFromMaster($event)" [title]="searchTitle"></app-product-details>
-
+  <app-sign-in-sign-up-form (loginSuccess)="getLoginStatus($event)"></app-sign-in-sign-up-form>
+</ng-container>
+<ng-container *ngIf="loginSuccess">
 <div class="container">
+  <app-product-details (productListsToMaster)="getProductLists($event)" (errorMsgToParent)="getErrorMsgFromMaster($event)" [title]="searchTitle"></app-product-details>
   <div class="row">
     <div class="col-md-1">
       <app-addproduct [productLists]="productListsService.productLists"></app-addproduct>
     </div>
-    <!-- <div class="col-md-11">
+    <div class="col-md-11">
         <input type="text" [(ngModel)]="searchTitle" placeholder="Enter title here.." #search>
-    </div> -->
+    </div>
   </div>
 </div>
 

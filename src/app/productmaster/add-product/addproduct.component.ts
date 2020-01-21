@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProductDetails } from '../ProductDetailsInterface';
+import { IProducts } from '../../models/products-interface';
 import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductDetailService } from '../product-details/product-details.service';
+import { ProductDetailService } from '../../services/product-details.service';
 
 @Component({
   selector: 'app-addproduct',
@@ -16,8 +16,8 @@ export class AddproductComponent implements OnInit {
   price: number;
   stock: number;
 
-  @Input() productLists: IProductDetails[];
-  productList: IProductDetails;
+  @Input() productLists: IProducts[];
+  productList: IProducts;
 
   showHide: boolean;
 
@@ -51,13 +51,15 @@ export class AddproductComponent implements OnInit {
 
     this.addProductDetails.reset();
 
-    console.log(this.productService.productLists)
-
+    this.productService.addData(this.productList);
+    ''
     this.addProductDetails.patchValue ({
       title: '',
       price: 1,
       stock: 1
     })
+
+
   }
   
   hideForm(event) {

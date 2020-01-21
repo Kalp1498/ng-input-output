@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { IUserDetails } from './UserDetailsInterface'
+import { IUsers } from '../models/users-interface'
 
 @Injectable()
 export class UserLoginDetailService {
-    userLoginDetails: IUserDetails[] = [{   
+    userLoginDetails: IUsers[] = [{   
             email: "a@gmail.com",
             password: "a"
         }
     ];
 
-    getProductDetails(): IUserDetails[] {
+
+    getProductDetails(): IUsers[] {
         return this.userLoginDetails;
     }
 }

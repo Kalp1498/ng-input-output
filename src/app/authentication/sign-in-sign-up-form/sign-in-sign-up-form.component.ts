@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IUserDetails } from './UserDetailsInterface';
-import { UserLoginDetailService } from './user-details.service';
+import { IUsers } from '../../models/users-interface';
+import { UserLoginDetailService } from '../../services/user-details.service';
 
 @Component({
   selector: 'app-sign-in-sign-up-form',
@@ -14,7 +14,7 @@ export class SignInSignUpFormComponent implements OnInit {
 
   @Output() loginSuccess = new EventEmitter<boolean>();
 
-  userDetails: IUserDetails;
+  userDetails: IUsers;
   showView: string ;
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class SignInSignUpFormComponent implements OnInit {
     this.showView = view;
   }
 
-  getUserDetails(userDetails: IUserDetails) {
+  getUserDetails(userDetails: IUsers) {
     this.userDetails = userDetails;
   }
 

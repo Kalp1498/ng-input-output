@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProductDetails } from '../ProductDetailsInterface';
+import { IProducts } from '../../models/products-interface';
 
 @Component({
   selector: 'app-product-sorting',
@@ -12,7 +12,7 @@ export class ProductSortingComponent implements OnInit {
 
   orderByArray = [];
   buttonTitle = [];
-  @Input() productLists: IProductDetails[];
+  @Input() productLists: IProducts[];
 
   ngOnInit() {
     this.orderByArray = [

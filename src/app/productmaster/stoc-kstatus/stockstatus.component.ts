@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProductDetails } from '../ProductDetailsInterface';
+import { IProducts } from '../../models/products-interface';
 
 @Component({
   selector: 'app-stockstatus',
@@ -10,7 +10,7 @@ export class StockstatusComponent implements OnInit {
 
   constructor() { }
 
-  @Input() productDetails : IProductDetails[];
+  @Input() productDetails : IProducts[];
 
   ngOnInit() {
     

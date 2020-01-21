@@ -1,19 +1,18 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { IProductDetails } from './ProductDetailsInterface';
-import { ProductDetailService } from '../productmaster/product-details/product-details.service';
+import { IProducts } from '../models/products-interface';
+import { ProductDetailService } from '../services/product-details.service';
 
 @Component({
   selector: 'app-productmaster',
   templateUrl: './productmaster.component.html',
   styleUrls: ['./productmaster.component.css'],
   providers: [ProductDetailService]
-  
 })
 export class ProductmasterComponent implements OnInit {
 
   constructor(private productListsService: ProductDetailService) { }
 
-  productLists: IProductDetails[];
+  productLists: IProducts[];
 
   errorMsg: string;
   loginSuccess: boolean;
@@ -22,8 +21,8 @@ export class ProductmasterComponent implements OnInit {
     this.loginSuccess = false;
   }
 
-  getProductLists(productLists: IProductDetails[]) {
-    // this.productListsService.productLists = productLists
+  getProductLists(productLists: IProducts[]) {
+    this.productListsService.productLists = productLists
   }
 
   getTotalPrice() {
@@ -50,9 +49,9 @@ export class ProductmasterComponent implements OnInit {
     return totalPrice;
   }
 
-  // getErrorMsgFromMaster(errorMsg: string) {
-  //   this.errorMsg = errorMsg;
-  // }
+  getErrorMsgFromMaster(errorMsg: string) {
+    this.errorMsg = errorMsg;
+  }
 
   getLoginStatus(success: boolean) {
     this.loginSuccess = success;

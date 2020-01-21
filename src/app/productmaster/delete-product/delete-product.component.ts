@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IProductDetails } from '../ProductDetailsInterface';
-import { ProductDetailService } from '../product-details/product-details.service';
+import { IProducts } from '../../models/products-interface';
+import { ProductDetailService } from '../../services/product-details.service';
 
 @Component({
   selector: 'app-delete-product',
@@ -9,8 +9,8 @@ import { ProductDetailService } from '../product-details/product-details.service
 })
 export class DeleteProductComponent implements OnInit {
 
-  @Input() productLists: IProductDetails[];
-  @Input() productList: IProductDetails;
+  @Input() productLists: IProducts[];
+  @Input() productList: IProducts;
 
   ngOnInit() {
     
@@ -24,7 +24,7 @@ export class DeleteProductComponent implements OnInit {
         return item.id = index + 1;
       })
       let a = new ProductDetailService
-      console.log(a.getProductDetails())
+      // console.log(a.getProductDetails())
     }
   }
 

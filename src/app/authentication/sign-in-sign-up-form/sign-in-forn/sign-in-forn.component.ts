@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { IUserDetails } from '../UserDetailsInterface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserLoginDetailService } from '../user-details.service';
+import { UserLoginDetailService } from '../../../services/user-details.service';
+import { IUsers } from '../../../models/users-interface';
 
 @Component({
   selector: 'app-sign-in-forn',
@@ -12,8 +12,8 @@ export class SignInFornComponent implements OnInit {
 
   constructor(private userLoginDetails: UserLoginDetailService) { }
 
-  userDetail: IUserDetails;
-  userDetails: IUserDetails[];
+  userDetail: IUsers;
+  userDetails: IUsers[];
 
   showPassword: boolean;
   showEmail: boolean;
