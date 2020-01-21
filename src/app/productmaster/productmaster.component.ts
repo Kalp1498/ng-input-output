@@ -1,42 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { IProductDetails } from './ProductDetailsInterface';
+import { ProductDetailService } from '../productmaster/product-details/product-details.service';
 
 @Component({
   selector: 'app-productmaster',
   templateUrl: './productmaster.component.html',
-  styleUrls: ['./productmaster.component.css']
+  styleUrls: ['./productmaster.component.css'],
+  providers: [ProductDetailService]
+  
 })
 export class ProductmasterComponent implements OnInit {
 
-  productLists: IProductDetails[] = [];
-  stockStatus: number;
-  errorMsg: string;
+  constructor(private productListsService: ProductDetailService) { }
 
-  orderByArray = [];
-  buttonTitle = [];
+  productLists: IProductDetails[];
+
+  errorMsg: string;
+  loginSuccess: boolean;
 
   ngOnInit() {
-    this.orderByArray = ['idh2l', 'idl2h', 
-                         'titleh2l', 'titlel2h', 
-                         'priceh2l', 'pricel2h', 
-                         'stockh2l', 'stockl2h', 
-                         'totalh2l', 'totall2h'
-                        ];
-
-    this.buttonTitle = ['ID : High to Low', 'ID : Low to High',
-                        'Title : High to Low', 'Title : Low to High',
-                        'Price : High to Low', 'Price : Low to High',
-                        'Stock : High to Low', 'Stock : Low to High',
-                        'Total : High to Low', 'Total : Low to High'
-                        ];
+    this.loginSuccess = false;
   }
 
-  getProductFromProd(products: IProductDetails[]) {
-    this.productLists = products;
+  getProductLists(productLists: IProductDetails[]) {
+    // this.productListsService.productLists = productLists
   }
 
   getTotalPrice() {
     let total: number = 0;
-    this.productLists.forEach(element => {
+    this.productListsService.productLists.forEach(element => {
       total += element.price;
     });
     return total;
@@ -44,7 +36,7 @@ export class ProductmasterComponent implements OnInit {
 
   getTotalStock() {
     let totalStock: number = 0;
-    this.productLists.forEach(element => {
+    this.productListsService.productLists.forEach(element => {
       totalStock += element.stock;
     });
     return totalStock;
@@ -52,56 +44,17 @@ export class ProductmasterComponent implements OnInit {
 
   getTotalOfTotalPrices() {
     let totalPrice: number = 0;
-    this.productLists.forEach(element => {
+    this.productListsService.productLists.forEach(element => {
       totalPrice += (element.price * element.stock);
     });
     return totalPrice;
   }
 
-  getErrorMsgFromMaster(errorMsg: string) {
-    this.errorMsg = errorMsg;
-  }
+  // getErrorMsgFromMaster(errorMsg: string) {
+  //   this.errorMsg = errorMsg;
+  // }
 
-  deleteProductFromID(id: number) {
-    let item = this.productLists.find(item => item.id == id)
-    this.productLists.splice(this.productLists.indexOf(item), 1)
+  getLoginStatus(success: boolean) {
+    this.loginSuccess = success;
   }
-
-  reorder(event, orderBy: string) {
-    this.productLists.sort((a,b) => {
-      switch (orderBy) {
-        case 'idh2l':
-          return b.id - a.id;
-          break;
-        case 'idl2h':
-          return a.id - b.id;
-          break;
-        case 'titleh2l':
-          return b.title.localeCompare(a.title);
-          break;
-        case 'titlel2h':
-          return a.title.localeCompare(b.title);
-          break;
-        case 'priceh2l':
-          return b.price - a.price;
-          break;
-        case 'pricel2h':
-          return a.price - b.price;
-          break;
-        case 'stockh2l':
-          return b.stock - a.stock;
-          break;
-        case 'stockl2h':
-          return a.stock - b.stock;
-          break;
-        case 'totalh2l':
-          return (b.price * b.stock) - (a.price * a.stock);
-          break;
-        case 'totall2h':
-          return (a.price * a.stock) - (b.price * b.stock);
-          break;
-      }
-    })
-  }
-
 }

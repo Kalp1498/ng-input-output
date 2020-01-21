@@ -1,69 +1,67 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IProductDetails } from '../ProductDetailsInterface';
+import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductDetailService } from '../product-details/product-details.service';
 
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
-  styleUrls: ['./addproduct.component.css']
+  styleUrls: ['./addproduct.component.css'],
+  providers: [ProductDetailService]
 })
+
 export class AddproductComponent implements OnInit {
 
-  @Input() productLists: IProductDetails[] = [];
+  title: string;
+  price: number;
+  stock: number;
 
-  title: string = "";
-  price: number = 0;
-  stock: number = 0;
+  @Input() productLists: IProductDetails[];
+  productList: IProductDetails;
 
-  errorMsg: string = "";
-  newProduct: IProductDetails;
+  showHide: boolean;
 
-  public showHide: boolean = false;
+  addProductDetails = new FormGroup({
+    title: new FormControl('' ,Validators.required),
+    price: new FormControl(1 ,Validators.required),
+    stock: new FormControl(1 ,Validators.required)
+  })
+
+  constructor(public productService: ProductDetailService) { }
 
   ngOnInit() {
-    console.log(this.productLists)
+    this.title = "";
+    this.price = 0;
+    this.price = 0;
+    this.showHide = false;
   }
 
   showForm(event) {
     this.showHide = true;
   }
 
-  addProduct(event) {
-    if (this.title == "") {
-      this.errorMsg = 'Please enter title';
-    } if (this.price < 0) {
-        if (this.errorMsg == "") {
-          this.errorMsg = "Please enter price greater than 0";
-        } else {
-          this.errorMsg += ", price > 0";
-        }
-    } if (this.price == null) {
-        this.price = 0;
-    } if (this.stock < 0) {
-        if (this.errorMsg == "") {
-          this.errorMsg = "Please enter stock greater than 0";
-        } else {
-          this.errorMsg += ", stock > 0";
-        }
-    } if (this.stock == null) {
-      this.stock = 0;
-    }
+  addProduct(addProd: NgForm) {
+    let id = this.productLists.length + 1;
+    this.title = addProd.controls['title'].value;
+    this.price = addProd.controls['price'].value;
+    this.stock = addProd.controls['stock'].value;
 
-    if (this.errorMsg != "") {
-      alert(this.errorMsg);
-    } else {
-      this.newProduct = {id: this.productLists.length + 1, title: this.title, price: this.price, stock: this.stock}
-      this.productLists.push(this.newProduct);
-      this.showHide = false;
-      this.title = "";
-      this.price = 0;
-      this.stock = 0;
-    }
+    this.productList = {id: id, title: this.title, price: this.price, stock: this.stock}
+    this.productLists.push(this.productList);
 
+    this.addProductDetails.reset();
+
+    console.log(this.productService.productLists)
+
+    this.addProductDetails.patchValue ({
+      title: '',
+      price: 1,
+      stock: 1
+    })
   }
   
   hideForm(event) {
     this.showHide = false;
   }
-
-
 
 }

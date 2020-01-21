@@ -1,0 +1,53 @@
+<h1>Sign Up</h1>
+<hr>
+<form class="form-group" #signUpForm="ngForm" (ngSubmit)="getSignUpDetails()">
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="email" email class="form-control" name="txtEmail" placeholder="Email" [(ngModel)]="userDetail.email" #txtEmail="ngModel" required>
+    </div>
+    <div [hidden]="txtEmail.valid || txtEmail.pristine">
+        <div class="alert alert-danger" style="margin: 0px;">
+            enter proper email
+        </div>
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" class="form-control" name="txtPassword" placeholder="Password" [(ngModel)]="userDetail.password" #txtPassword="ngModel" pattern=".{5,10}">
+    </div>
+    <div [hidden]="txtPassword.valid || txtPassword.pristine">
+        <div class="alert alert-danger" style="margin: 0px;">
+            Title should be between 5 to 10 chars
+        </div>
+    </div> 
+    
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" class="form-control" name="txtConfPassword" placeholder="Repeat Password" [(ngModel)]="confirmPassword" #txtConfPassword="ngModel" required>
+    </div>
+    <div [hidden]="txtConfPassword.valid || txtConfPassword.pristine">
+        <div class="alert alert-danger" style="margin: 0px;">
+            Repeat password is required
+        </div>
+    </div>
+    <ng-container *ngIf="txtConfPassword.valid">
+        <div [hidden]="txtPassword.value == txtConfPassword.value">
+            <div class="alert alert-danger" style="margin: 0px;">
+                Password mismatch
+            </div>
+        </div> 
+    </ng-container>
+
+    <br>
+    <div style="text-align: center;">
+        <button type="submit" [disabled]="!signUpForm.form.valid || txtPassword.value != txtConfPassword.value" class="btn btn-primary" name="btnSubmit">Sign Up</button>
+        &nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+
+</form>
+<p style="font-size: 18px; text-align: center;">
+    Have a account?<button style="background-color: transparent; border: none; padding: 0px; color: blue;" (click)="changeView()">&nbsp;Sign in</button>
+</p>

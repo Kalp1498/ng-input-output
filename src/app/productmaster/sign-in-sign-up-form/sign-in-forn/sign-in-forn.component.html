@@ -1,0 +1,27 @@
+<h1>Sign In</h1>
+<hr>
+<form class="form-group" [formGroup]="userLoginForm" (ngSubmit)="login()">
+    <ng-container *ngIf="showEmail">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="email" email class="form-control" placeholder="Email" formControlName="email">
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="showPassword">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+    </ng-container>
+
+    <div style="text-align: center;">
+        <br>
+        <button type="submit" [disabled]="!userLoginForm.valid" class="btn btn-primary">Sign In</button>
+        &nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+</form>
+<p style="font-size: 18px; text-align: center;">
+    Dont have a account?<button style="background-color: transparent; border: none; padding: 0px; color: blue;" (click)="changeView()">&nbsp;Create one</button>
+</p>

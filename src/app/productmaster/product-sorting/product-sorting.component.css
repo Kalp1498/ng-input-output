@@ -1,0 +1,9 @@
+span button {
+    width: 18%;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin: 5px;
+}
+
+button:focus {outline:0;}

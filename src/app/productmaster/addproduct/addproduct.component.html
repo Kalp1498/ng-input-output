@@ -1,10 +1,43 @@
-<button (click)="showForm($event)">Add Product</button>
+<button class="btn btn-primary" style="height: 48px;" (click)="showForm($event)">Add Product</button>
 <br>
 <br>
-<form *ngIf="showHide" style="text-align: center;">
-    <input type="text" [(ngModel)]="title" placeholder="enter title" [ngModelOptions]="{standalone: true}">
-    <input type="number" [(ngModel)]="price" placeholder="enter price" [ngModelOptions]="{standalone: true}">
-    <input type="number" [(ngModel)]="stock" placeholder="enter stock" [ngModelOptions]="{standalone: true}">
-    <button (click)="addProduct($event)">Done</button>
-    <button style="background-color: red;" (click)="hideForm($event)">Cancel</button>
-</form>
+<div class="container">
+    <form *ngIf="showHide" style="text-align: center;" [formGroup]="addProductDetails" (ngSubmit)="addProduct(addProductDetails)">
+        <div class="row" style="margin: 0px;">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h4 style="text-align: left;">Title : </h4>
+                    <input class="form-control" placeholder="enter title" formControlName="title">
+                </div>
+                <div [hidden]="addProductDetails.controls['title'].valid || addProductDetails.controls['title'].pristine" class="alert alert-danger">
+                    Title is required
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h4 style="text-align: left;">Price : </h4>
+                    <input type="number" class="form-control" placeholder="enter price" formControlName="price" onkeypress="return event.charCode >= 48">
+                </div>
+                <div [hidden]="addProductDetails.controls['price'].valid || addProductDetails.controls['price'].pristine" class="alert alert-danger">
+                    Price is required
+                </div>
+            </div>
+            <div class="col-md-3">        
+                <div class="form-group">
+                    <h4 style="text-align: left;">Stock : </h4>
+                    <input type="number" class="form-control" placeholder="enter stock" formControlName="stock" onkeypress="return event.charCode >= 48">
+                </div>
+                <div [hidden]="addProductDetails.controls['stock'].valid || addProductDetails.controls['stock'].pristine" class="alert alert-danger">
+                    Stock is required
+                </div>
+            </div>
+            <br><br>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success doneBtn" [disabled]="!addProductDetails.valid">Done</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-danger" (click)="hideForm($event)">Cancel</button>
+            </div>
+        </div>
+    </form>    
+</div>

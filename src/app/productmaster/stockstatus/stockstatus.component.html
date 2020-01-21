@@ -1,10 +1,11 @@
-<input type="number" [(ngModel)]="productDetails.stock" /><br><br>
-<label *ngIf="productDetails.stock <= 10" style="background-color: red;">
+<input type="number" [(ngModel)]="productDetails.stock" onkeypress="return event.charCode >= 48">
+<br>
+<label class="label label-danger" *ngIf="productDetails.stock <= 10">
     Low
 </label>
-<label *ngIf="productDetails.stock > 10 && productDetails.stock <= 20" style="background-color: yellow;">
+<label class="label label-warning" *ngIf="productDetails.stock > 10 && productDetails.stock <= 20">
     Average
 </label>
-<label *ngIf="productDetails.stock > 20" style="background-color: green;">
+<label class="label label-success" *ngIf="productDetails.stock > 20">
     High
 </label>

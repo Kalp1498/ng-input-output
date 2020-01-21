@@ -1,12 +1,28 @@
-table > tr > th {
+table {
+    font-size: 15px;
+}
+
+table > tbody > tr > td {
     width: 14.3%;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+table > tbody > tr > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+table > thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
 }
 
 input[type=text] {
-    width: 90%;
-    box-sizing: border-box;
+    margin-left: 25px;
+    width: 100%;
     border: 2px solid #ccc;
-    border-radius: 4px;
     font-size: 16px;
     background-color: white;
     background-image: url('src/assets/search.png');
@@ -15,11 +31,8 @@ input[type=text] {
     padding: 12px 20px 12px 40px;
   } 
 
-  span button {
-      width: 20%;
-      height: 50px;
-      border-radius: 10px;
-      font-size: 18px;
-  }
+.container {
+    margin-top: 25px;
+}
 
   button:focus {outline:0;}

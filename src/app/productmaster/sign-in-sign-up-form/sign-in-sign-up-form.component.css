@@ -1,0 +1,11 @@
+body {
+    background-color: #f6f6f6;
+}
+
+.middleContainer {
+    width: auto !important;
+    margin: 12.5vh 25vh 12.5vh 25vh;
+    height: 75vh;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 3px #999999;
+}

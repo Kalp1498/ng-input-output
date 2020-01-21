@@ -1,0 +1,5 @@
+<div class="fluid-container" style="text-align: center;">
+    <span *ngFor="let order of orderByArray; let i = index">
+      <button (click)="reorder($event, order)">{{ buttonTitle[i] }}</button>
+    </span>
+  </div>

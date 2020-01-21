@@ -1,0 +1,17 @@
+<div class="middleContainer">
+  <div class="row" style="padding: 0px;">
+    <div class="col-md-6">
+      <img class="img-responsive" src="../../../assets/background.jpg" style="width: 100%; height: 75vh; border-radius: 5px 0px 0px 5px;"> 
+    </div>
+    <div class="col-md-6" style="margin-top: 20px;">
+      <div class="container" style="width: 75%;">
+        <ng-container *ngIf="showView=='signup'">
+          <app-sign-up-form (showView)="changeView($event)"></app-sign-up-form>
+        </ng-container>
+        <ng-container *ngIf="showView=='signin'">
+          <app-sign-in-forn (showView)="changeView($event)" (loginSuccess)="getLoginStatus($event)"></app-sign-in-forn>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
