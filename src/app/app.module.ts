@@ -7,10 +7,12 @@ import { SignInSignOutModule } from './authentication/sign-in-sign-up-form/sign-
 import { ProductMasterModule } from './productmaster/product-master.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

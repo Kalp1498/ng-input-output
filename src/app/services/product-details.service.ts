@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { IProducts } from '../models/products-interface'
 
-@Injectable()
+@Injectable({
+    "providedIn": "root"
+})
 export class ProductDetailService {
     productLists: IProducts[] = [
         {id: 1, title: "Mi A1", price:10000, stock:15},
